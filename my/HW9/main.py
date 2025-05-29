@@ -67,6 +67,11 @@ def get_db():
     finally:
         db.close()
 
+async def get_current_user(request: Request):
+    user = request.session.get("user")
+    return user
+
+
 # 路由
 @app.get("/", response_class=HTMLResponse)
 async def list_posts(
@@ -162,25 +167,28 @@ async def create_post(
     db.commit()
     return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
-    from fastapi import Path
-
-@app.post("/post/{post_id}/delete")
+@app.post("/delete_post/{post_id}")
 async def delete_post(
+    post_id: int, 
     request: Request,
-    post_id: int = Path(...),
     db: Session = Depends(get_db)
 ):
+    # 檢查使用者是否已登入
     user = request.session.get("user")
     if not user:
-        raise HTTPException(status_code=401, detail="未登入")
-
+        raise HTTPException(status_code=401, detail="You must be logged in to delete a post")
+    
+    # 先檢查該貼文是否存在
     post = db.query(Post).filter(Post.id == post_id).first()
     if not post:
-        raise HTTPException(status_code=404, detail="找不到貼文")
+        raise HTTPException(status_code=404, detail="Post not found")
     
+    # 確認貼文是否屬於當前使用者
     if post.username != user["username"]:
-        raise HTTPException(status_code=403, detail="你無權刪除此貼文")
-
+        raise HTTPException(status_code=403, detail="You can only delete your own posts")
+    
+    # 刪除貼文
     db.delete(post)
     db.commit()
+    
     return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
