@@ -1,37 +1,10 @@
-#FINAL 
+# 課程：網頁設計 -- 筆記、習題與報告
 
-
-##HM1. personal
-程式碼是自己寫的
-
-
-##HM2.
-參考自111310506楊丞皓的作業，更改一些內容完成的
-
-
-##HM3.
-第9、10題有參考AI
-
-
-##HM4.
-每題都有參考AI
-
-
-##HW5
-參考11310506 楊丞皓的作業，更改一些內容完成的
-
-
-##HW6
-參考11310506 楊丞皓的作業，更改一些內容完成的
-
-
-##HW7
-參考11310506 楊丞皓的作業，更改一些內容完成的
-
-
-##HW8
-3、8題有參考AI
-
-
-##HW9
-參考範例以及AI完成的
+欄位 | 內容
+-----|--------
+學期 | 113 學年下學期
+學生 | 黃奕翔
+學號末兩碼 |  17
+教師 | [陳鍾誠](https://www.nqu.edu.tw/educsie/index.php?act=blog&code=list&ids=4)
+學校科系 | [金門大學資訊工程系](https://www.nqu.edu.tw/educsie/index.php)
+課程教材 | https://github.com/ccc113b/html2server <br/> https://www.w3schools.com/
